@@ -1,0 +1,23 @@
+<section class="section">
+	<h1>게시물 관리자</h1>
+	<p>현재 게시판의 게시물 관리자의 닉네임을 줄 단위로 입력해주세요.</p>
+
+	<form action="./" method="post" class="x_form-horizontal">
+		<input type="hidden" name="target_module_srl" value="{$module_srl}" />
+		<input type="hidden" name="success_return_url" value="{getRequestUriByServerEnviroment()}" />
+		<input type="hidden" name="manage_document_addon" value="manage_document_addon" />
+
+		<div class="x_control-group">
+			<label for="document_managers" class="x_control-label">게시물 관리자</label>
+			<div class="x_controls">
+				<textarea name="document_managers" id="document_managers" placeholder="닉네임 입력">{$manage_document_config->document_managers ?? null}</textarea>
+			</div>
+		</div>
+
+		<div class="btnArea">
+			<button type="submit" class="x_btn x_btn-primary">{$lang->cmd_save}</button>
+		</div>
+	</form>
+</section>
+
+

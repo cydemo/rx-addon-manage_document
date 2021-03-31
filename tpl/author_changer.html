@@ -1,0 +1,53 @@
+<load target="js/author_changer.js" />
+	<div class="x_control-group">
+		<label class="x_control-label" for="member_list">{$lang->member} {$lang->cmd_select}</label>
+		<div class="x_controls">
+			<ul class="target_list" name="member_list" id="member_list">
+				<li loop="$member_list => $key, $val" cond="$member_list">
+					<a href="javascript:void(0);" data-member_srl="{$val->member_srl}" data-user_id="{$val->user_id}" data-user_name="{$val->user_name}" data-email_address="{$val->email_address}" data-homepage="{$val->homepage}">{$val->nick_name}</a>
+				</li>
+				<p cond="!$member_list && $selected_group_srl === null">{$lang->msg_search_user}</p>
+				<p cond="!$member_list && $selected_group_srl !== null">{$lang->msg_no_result}</p>
+			</ul>
+		</div>
+	</div>
+	<include target="page_navigation.html" cond="$page_navigation && $total_page > 1" />
+	<div class="x_pull-right" cond="$member_list">
+		<label class="x_inline" for="apply_point">
+			<input type="checkbox" id="apply_point" value="Y" /> {$lang->apply_point}
+		</label>
+		<label class="x_inline" for="use_anonymous">
+			<input type="checkbox" id="use_anonymous" value="Y" /> {$lang->use_anonymous}
+		</label>
+		<a class="x_btn x_btn-inverse" id="execute">{$lang->cmd_replace}</a>
+	</div>
+</div>
+<div class="x_modal-footer">
+	<form action="./" method="get" class="search center x_input-append" no-error-return-url="true">
+		<input type="hidden" name="module" value="{$module}" />
+		<input type="hidden" name="mid" value="{$mid}" />
+		<input type="hidden" name="act" value="{$act}" />
+		<input type="hidden" name="manage_type" value="{$manage_type}" />
+		<div class="group_search">
+			<select name="selected_group_srl" title="{$lang->member_group}">
+				<option value="0">{$lang->all_group}</option>
+				<option loop="$group_list => $key, $val" value="{$val->group_srl}" selected="selected"|cond="$selected_group_srl==$val->group_srl">{$val->title}</option>
+			</select>
+		</div>
+		<div class="field_search">
+			<select name="search_target" title="{$lang->search_target}">
+				<option value="{$key}" loop="$search_target_list=>$key,$val" selected="selected"|cond="$search_target==$key">{$val}</option>
+			</select>
+			<div class="search_field">
+				<input type="search" name="search_keyword" value="{htmlspecialchars($search_keyword, ENT_COMPAT | ENT_HTML401, 'UTF-8', false)}" title="{$lang->search_keyword}" />
+				<button class="x_btn x_btn-inverse" type="submit">{$lang->cmd_search}</button>
+				<a class="x_btn" href="{getUrl('', 'mid', $mid, 'act', $act, 'manage_type', $manage_type)}">{$lang->cmd_cancel}</a>
+			</div>
+		</div>
+	</form>
+</div>
+<div id="overlay">
+	<div class="spinner_wrapper">
+		<span class="spinner"></span>
+	</div>
+</div>

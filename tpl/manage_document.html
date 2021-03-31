@@ -1,0 +1,53 @@
+<load target="filter/manage_checked_document.xml" />
+<load target="js/manage_document.js" />
+	<div class="x_control-group">
+		<label class="x_control-label" for="board_list">{lang('board.board')} {$lang->cmd_select}</label>
+		<div class="search_field" cond="$use_filter === 'Y'">
+			<load target="js/hangul.js" />
+			<load target="js/search_filter.js" />
+			<input class="board_filter" type="search" placeholder="{$lang->msg_input_keyword}" />
+		</div>
+		<div class="x_controls">
+			<ul class="target_list" name="board_list" id="board_list">
+				<li loop="$board_list => $srl, $module_category" cond="$board_list">
+					<strong>{$module_category->title}</strong>
+					<ul class="target_items">
+						<li loop="$module_category->list => $id, $info" cond="$module_category->list">
+							<a href="javascript:void(0);" class="selected"|cond="$info->module_srl === $module_srl" data-module_srl="{$info->module_srl}">{$info->browser_title} <small>{$id}</small></a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
+<form action="./" method="get" id="fo_management">
+	<input type="hidden" name="module" value="document" />
+	<input type="hidden" name="cart" value="" />
+	<input type="hidden" name="type" value="" />
+	<input type="hidden" name="target_module_srl" id="target_module" value="{$module_srl}" />
+		<div class="x_control-group">
+			<label class="x_control-label" for="target_category">{$lang->category}</label>
+			<div class="x_controls">
+				<select id="target_category" name="target_category_srl"></select>
+			</div>
+		</div>
+		<div class="x_control-group">
+			<label class="x_control-label" for="message_content">{$lang->cmd_send_message}</label>
+			<div class="x_controls" style="margin-right:14px">
+				<textarea name="message_content" id="message_content" rows="4" cols="42" style="width:100%"></textarea>
+				<label for="send_default_message" class="x_inline"><input type="checkbox" name="send_default_message" id="send_default_message" value="Y" checked="checked" /> {$lang->send_default_message}</label>
+			</div>
+		</div>
+	</div>
+	<div class="x_modal-footer">
+		<span class="x_btn-group x_pull-left">
+			<button type="button" class="x_btn" onclick="doManageDocument('trash');">{$lang->cmd_trash}</button>
+			<button type="button" class="x_btn" onclick="doManageDocument('delete');">{$lang->cmd_delete}</button>
+		</span>
+		<span class="x_btn-group x_pull-right">
+			<button type="button" class="x_btn x_btn-inverse" onclick="doManageDocument('move');">{$lang->cmd_move}</button>
+			<button type="button" class="x_btn x_btn-inverse" onclick="doManageDocument('copy');">{$lang->cmd_copy}</button>
+		</span>
+	</div>
+</form>

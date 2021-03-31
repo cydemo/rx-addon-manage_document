@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon version="0.2">
+	<title xml:lang="ko">게시물 관리 확장 애드온</title>
+	<description xml:lang="ko">게시물 관리 기능을 확장시켜주는 애드온</description>
+	<version>0.3.3</version>
+	<date>2021-03-31</date>
+	<author email_address="cydemo@gmail.com" link="https://xetown.com">
+		<name xml:lang="ko">cydemo</name>
+	</author>
+	<extra_vars>
+		<var name="excluded_target_mids" type="textarea">
+			<title xml:lang="ko">목록에서 제외할 게시판의 mid</title>
+			<description xml:lang="ko">게시물 이동/복사 대상이 되는 게시판 목록에서 제외시킬 게시판의 mid를 지정합니다.(줄 단위 입력)</description>
+		</var>
+		<var name="use_filter" type="select">
+			<title xml:lang="ko">게시판 검색 필터</title>
+			<description xml:lang="ko">검색어 입력을 통해 게시판 목록에서 타겟 게시판을 실시간으로 필터링할 수 있습니다.</description>
+			<options value="">
+				<title xml:lang="ko">사용 안 함</title>
+			</options>
+			<options value="Y">
+				<title xml:lang="ko">사용</title>
+			</options>
+		</var>
+	</extra_vars>
+</addon>

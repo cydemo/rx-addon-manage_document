@@ -1,0 +1,108 @@
+<load target="js/status_changer.js" />
+	<div class="x_control-group">
+		<label class="x_control-label" for="document_status">{$lang->document} {$lang->status} {$lang->cmd_setup}</label>
+		<div class="x_controls">
+			<ul class="target_list" name="document_status" id="document_status">
+				<li class="target_status" id="is_notice">
+					<div><strong>{$lang->notice}/{$lang->not_notice}</strong></div>
+					<ul>
+						<li loop="$is_notice => $key, $val">
+							<label for="is_notice_{$key}">
+								<input type="radio" name="is_notice" id="is_notice_{$key}" value="{$key}" />
+								{$val}
+							</label>
+						</li>
+					</ul>
+				</li>
+				<li class="target_status" id="status">
+					<div><strong>{$lang->public}/{$lang->private}</strong></div>
+					<ul>
+						<li loop="$lang->status_name_list => $key, $val" cond="$key !== 'PRIVATE'">
+							<label for="{$key}">
+								<input type="radio" name="status" id="{$key}" value="{$key}" />
+								{$val}
+							</label>
+						</li>
+					</ul>
+				</li>
+				<li class="target_status" id="notify_message">
+					<div><strong>{$lang->notify}</strong></div>
+					<ul>
+						<li loop="$is_notify_message => $key, $val">
+							<label for="notify_message_{$key}">
+								<input type="radio" name="notify_message" id="notify_message_{$key}" value="{$key}" />
+								{$val}
+							</label>
+						</li>
+					</ul>
+				</li>
+				<li class="target_status" id="comment_status">
+					<div><strong>{$lang->is_comment}</strong></div>
+					<ul>
+						<li loop="$is_comment => $key, $val">
+							<label for="{$key}">
+								<input type="radio" name="comment_status" id="{$key}" value="{$key}" />
+								{$val}
+							</label>
+						</li>
+					</ul>
+				</li>
+				<li class="target_status" id="tags">
+					<div><strong>{$lang->tag}</strong></div>
+					<ul>
+						<input class="tag_list" type="text" name="tags" id="tags" value="" placeholder="{$lang->tag}" />
+						<div class="element_wrapper">
+							<li loop="$is_tag => $key, $val">
+								<label for="is_tag_{$key}">
+									<input type="radio" name="is_tag" id="is_tag_{$key}" value="{$key}" />
+									{$val}
+								</label>
+							</li>
+						</div>
+					</ul>
+				</li>
+				<li class="target_status" id="regdate">
+					<div><strong>{$lang->regdate}</strong></div>
+					<ul>
+						<input class="regdate" type="datetime-local" name="regdate" id="regdate" value="" step="1" placeholder="{$lang->regdate}" />
+					</ul>
+				</li>
+				<li class="target_status" id="title_style">
+					<div><strong>{$lang->title_style}</strong></div>
+					<ul>
+						<li loop="$is_bold => $key, $val">
+							<label for="title_bold_{$key}">
+								<input type="radio" name="title_bold" id="title_bold_{$key}" value="{$key}" />
+								{$val}
+							</label>
+						</li>
+						<div class="element_wrapper">
+							<!--%load_js_plugin("ui.colorpicker")-->
+							<input class="color-indicator" type="text" name="title_color" id="title_color" value="" placeholder="{$lang->title_color}" />
+						</div>
+					</ul>
+				</li>
+				<li class="target_status" id="lang_code">
+					<div><strong>{$lang->lang_code}</strong></div>
+					<ul>
+						<li loop="$lang_list => $key, $val">
+							<label for="{$key}">
+								<input type="radio" name="lang_code" id="{$key}" value="{$key}" />
+								{$val}
+							</label>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="x_pull-right">
+		<a class="x_btn" href="{getUrl('', 'mid', $mid, 'act', $act, 'manage_type', $manage_type)}">{$lang->cmd_select} {$lang->cmd_cancel}</a>
+		<a class="x_btn x_btn-inverse" id="execute">{$lang->cmd_replace}</a>
+	</div>
+</div>
+<div id="overlay">
+	<div class="spinner_wrapper">
+		<span class="spinner"></span>
+	</div>
+</div>

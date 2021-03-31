@@ -1,0 +1,30 @@
+<load target="css/default.css" index="1" />
+<load target="js/default.js" />
+
+<div class="x_modal-header">
+	<a loop="$command_list => $key, $command" href="{getUrl('manage_type', $key)}" class="active"|cond="$key === $manage_type || ($key === 'manage_document' && !$manage_type)">{$command}</a>
+	<span class="x_modal-close" onclick="window.self.close();"></span>
+</div>
+<!--@if(count($document_list) === 0)-->
+<div class="x_modal-body x_form-horizontal">
+	<p>{$lang->msg_not_selected_document}</p>
+</div>
+<!--@else-->
+<div class="x_modal-body x_form-horizontal">
+	<div class="x_control-group">
+		<div class="x_control-label">{$lang->checked_count}({count($document_list)})</div>
+		<div class="x_controls">
+			<ul class="document_list_wrapper">
+				<li class="document_list" loop="$document_list => $key, $document">
+					<input type="hidden" name="cart" value="{$document->document_srl}" data-module_srl="{$document->get('module_srl')}" data-member_srl="{$document->getMemberSrl()}" data-status="{$document->get('status')}" data-uploaded_count="{$document->get('uploaded_count')}" data-tags="{implode('|@|', $document->getTags())}" />{$document->getTitle()} <i class="vr">|</i> {$document->getNickName()} <strong class="remover" onclick="removeDocumentCart(this)"></strong>
+				</li>
+			</ul>
+		</div>
+	</div>
+	{@ $tpl = TemplateHandler::getInstance(); }
+	<!--@if($manage_type && array_key_exists($manage_type, $command_list))-->
+	{$tpl->compile('addons/manage_document/tpl', $manage_type . '.html')}
+	<!--@else-->
+	{$tpl->compile('addons/manage_document/tpl', 'manage_document.html')}
+	<!--@end-->
+<!--@end-->

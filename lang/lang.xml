@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<lang>
+	<item name="document_property">
+		<value xml:lang="ko"><![CDATA[문서 속성]]></value>
+		<value xml:lang="en"><![CDATA[Document Property]]></value>
+	</item>
+	<item name="msg_input_keyword">
+		<value xml:lang="ko"><![CDATA[검색어를 입력해주세요]]></value>
+		<value xml:lang="en"><![CDATA[Type Keywords]]></value>
+	</item>
+	<item name="apply_point">
+		<value xml:lang="ko"><![CDATA[포인트 반영]]></value>
+		<value xml:lang="en"><![CDATA[Apply Point]]></value>
+	</item>
+	<item name="no_notify">
+		<value xml:lang="ko"><![CDATA[알리지 않음]]></value>
+		<value xml:lang="en"><![CDATA[No Notification]]></value>
+	</item>
+	<item name="title_style">
+		<value xml:lang="ko"><![CDATA[제목 스타일]]></value>
+		<value xml:lang="en"><![CDATA[Title Style]]></value>
+	</item>
+	<item name="title_normal">
+		<value xml:lang="ko"><![CDATA[제목 보통]]></value>
+		<value xml:lang="en"><![CDATA[Normal]]></value>
+	</item>
+	<item name="is_comment">
+		<value xml:lang="ko"><![CDATA[댓글 허용/잠금]]></value>
+		<value xml:lang="en"><![CDATA[Allow/Lock Comment]]></value>
+	</item>
+	<item name="msg_search_user">
+		<value xml:lang="ko"><![CDATA[선택할 회원을 검색해주세요.]]></value>
+		<value xml:lang="en"><![CDATA[Search a User to Select]]></value>
+	</item>
+</lang>
