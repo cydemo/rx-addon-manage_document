@@ -1,6 +1,5 @@
 <?php
 
-defined('RX_VERSION', true);
 require_once '../../config/config.inc.php';
 $oContext = &Context::getInstance();
 $oContext->init();
