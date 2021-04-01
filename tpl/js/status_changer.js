@@ -77,8 +77,20 @@ jQuery(document).ready(function($) {
 							window.close();
 						}
 					},
-					error: function(msg) {
-						alert('서버와의 통신이 원활하지 않아 선택한 문서의 속성을 변경할 수 없었습니다');
+					error: function(x,e) {
+						if ( x.status == 0 ) {
+							alert('네트워크 연결 상태를 체크해주세요.');
+						} else if ( x.status == 404 ) {
+							alert('요청받은 URL을 찾을 수 없습니다.');
+						} else if ( x.status == 500 ) {
+							alert('내부 서버 오류');
+						} else if ( e == 'parsererror' ) {
+							alert('요청받은 내용을 변환하는 실패했습니다.');
+						} else if ( e == 'timeout' ) {
+							alert('연결 시간이 초과했습니다.');
+						} else {
+							alert('알 수 없는 에러가 발생했습니다.\n' + x.responseText);
+						}
 						$('#overlay').hide();
 					}
 				});
