@@ -1,18 +1,21 @@
 <?php
 
+define('__XE__', true);
 require_once '../../config/config.inc.php';
 $oContext = &Context::getInstance();
 $oContext->init();
 
 $module_srl = (int)$_REQUEST['module_srl'];
 $logged_info = Context::get('logged_info');
-$grant = ModuleModel::getGrant($module_srl, $logged_info);
-
-if ( !$grant->manager )
+if ( $logged_info->is_admin !== 'Y' )
 {
-	return new baseObject(-1, 'msg_not_permitted');
+	$module_info = ModuleModel::getModuleInfoByModuleSrl($module_srl);
+	$grant = ModuleModel::getGrant($module_info, $logged_info);
+	if ( !$grant->manager )
+	{
+		return new baseObject(-1, 'msg_not_permitted');
+	}
 }
-
 
 $args = new stdClass;
 $args->document_srl = $document_srl = (int)$_REQUEST['document_srl'];

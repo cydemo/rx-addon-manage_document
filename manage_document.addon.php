@@ -6,7 +6,15 @@ if ( !defined('RX_VERSION') ) return;
 /*******************/
 
 if ( $called_position !== 'after_module_proc' ) return;
-if ( $this->module !== 'document' || $this->act !== 'dispDocumentManageDocument' || !$this->grant->manager ) return;
+if ( $this->module !== 'document' || $this->act !== 'dispDocumentManageDocument' ) return;
+
+$logged_info = Context::get('logged_info');
+if ( $logged_info->is_admin !== 'Y' )
+{
+	$module_info = ModuleModel::getModuleInfoByModuleSrl(Context::get('module_srl'));
+	$this->grant = ModuleModel::getGrant($module_info, $logged_info);
+}
+if ( !$this->grant->manager ) return;
 
 // 언어팩 로드
 Context::loadLang(__DIR__ . '/lang');
