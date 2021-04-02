@@ -1,9 +1,7 @@
 <?php
 
-define('__XE__', true);
-require_once '../../config/config.inc.php';
-$oContext = &Context::getInstance();
-$oContext->init();
+include '../../common/autoload.php';
+Context::init();
 
 $module_srl = (int)$_REQUEST['module_srl'];
 $logged_info = Context::get('logged_info');
@@ -131,6 +129,6 @@ if ( $apply_point && $original_member_srl )
 	}
 }
 
-$oContext->close();
+Context::close();
 
 ?>

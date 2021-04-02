@@ -1,9 +1,7 @@
 <?php
 
-define('__XE__', true);
-require_once '../../config/config.inc.php';
-$oContext = &Context::getInstance();
-$oContext->init();
+include '../../common/autoload.php';
+Context::init();
 
 $module_srl = (int)$_REQUEST['module_srl'];
 $logged_info = Context::get('logged_info');
@@ -69,6 +67,6 @@ $status_changer = executeQuery('addons.manage_document.updateDocumentInfo', $arg
 unset($_SESSION['document_management'][$document_srl]);
 getController('document')->clearDocumentCache($document_srl);
 
-$oContext->close();
+Context::close();
 
 ?>
