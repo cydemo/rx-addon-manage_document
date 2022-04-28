@@ -16,6 +16,7 @@ if ( $logged_info->is_admin !== 'Y' )
 }
 
 $args = new stdClass;
+$args->module_srl = $module_srl;
 $args->document_srl = $document_srl = (int)$_REQUEST['document_srl'];
 
 $args->is_notice = $_REQUEST['is_notice'] ?? null;
@@ -45,6 +46,7 @@ if ( $tags !== null && $is_tag !== null )
 		$new_tags = $tags;
 	}
 	$args->tags = $new_tags;
+	getController('tag')->triggerInsertTag($args);
 }
 else
 {
@@ -66,7 +68,5 @@ $status_changer = executeQuery('addons.manage_document.updateDocumentInfo', $arg
 
 unset($_SESSION['document_management'][$document_srl]);
 getController('document')->clearDocumentCache($document_srl);
-
-Context::close();
 
 ?>

@@ -129,6 +129,4 @@ if ( $apply_point && $original_member_srl )
 	}
 }
 
-Context::close();
-
 ?>

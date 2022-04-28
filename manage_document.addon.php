@@ -23,8 +23,16 @@ $command_list = array(
 	'manage_document' => lang('cmd_manage_document'),
 	'author_changer' => lang('author') .  ' ' . lang('cmd_replace'),
 	'status_changer' => lang('document_property') .  ' ' . lang('cmd_replace'),
+	'extra_vars_changer' => lang('extra_vars') .  ' ' . lang('cmd_replace'),
 );
 Context::set('command_list', $command_list);
+
+// 문서 체크 리스트가 만들어진 모듈의 갯수
+$document_module_srl_list = array_unique(array_map(function($document) {
+	return $document->get('module_srl');
+}, Context::get('document_list')));
+$module_count = count($document_module_srl_list);
+Context::set('module_count', $module_count);
 
 $manage_type = Context::get('manage_type');
 if ( $manage_type === 'status_changer' )
@@ -63,6 +71,17 @@ if ( $manage_type === 'status_changer' )
 	$lang_selected = Context::loadLangSelected();
 	$lang_list = array_intersect_key($lang_supported, $lang_selected);
 	Context::set('lang_list', $lang_list);
+}
+else 
+if ( $manage_type === 'extra_vars_changer' )
+{
+	// 단일 모듈일 경우에만 확장변수 리스트 구성
+	$extra_keys = array();
+	if ( $module_count === 1 )
+	{
+		$extra_keys = DocumentModel::getExtraKeys(array_values($document_module_srl_list)[0]);
+	}
+	Context::set('extra_keys', $extra_keys);
 }
 else if ( $manage_type === 'author_changer' )
 {
