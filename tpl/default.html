@@ -12,7 +12,7 @@
 <!--@else-->
 <div class="x_modal-body x_form-horizontal">
 	<div class="x_control-group">
-		<div class="x_control-label">{$lang->checked_count}({count($document_list)})</div>
+		<div class="x_control-label" data-module_count="{$module_count}">{$lang->checked_count}({count($document_list)})</div>
 		<div class="x_controls">
 			<ul class="document_list_wrapper">
 				<li class="document_list" loop="$document_list => $key, $document">

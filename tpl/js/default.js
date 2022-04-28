@@ -26,10 +26,21 @@ function reloadDocumentCart(container) {
 		url: location.href,
 		dataType: 'html',
 		success: function(data) {
-			var area = $('<div/>').html(data).contents().find('.x_modal-body').children('.x_control-group').first();
-			if ( area.find('.document_list').length > 0 ) {
-				var selectedContent = area.html();
+			var manage_type = current_url.getQuery('manage_type');
+			var body = $('<div/>').html(data).contents().find('.x_modal-body');
+			var collected = body.children('.x_control-group').first();
+
+			var module_count = container.children('.x_control-label').data('module_count');
+			var extra_changable = ( module_count > 1 ) ? true : false;
+
+			if ( collected.find('.document_list').length > 0 ) {
+				var selectedContent = collected.html();
 				container.html(selectedContent);
+
+				module_count = container.children('.x_control-label').data('module_count');
+				if ( manage_type === 'extra_vars_changer' && extra_changable && module_count === 1 ) {
+					location.reload();
+				}
 			} else {
 				location.reload();
 			}

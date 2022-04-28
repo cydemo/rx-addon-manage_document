@@ -32,4 +32,20 @@
 		<value xml:lang="ko"><![CDATA[선택할 회원을 검색해주세요.]]></value>
 		<value xml:lang="en"><![CDATA[Search a User to Select]]></value>
 	</item>
+	<item name="prev_value">
+		<value xml:lang="ko"><![CDATA[기존 값]]></value>
+		<value xml:lang="en"><![CDATA[The previous values]]></value>
+	</item>
+	<item name="msg_prev_value">
+		<value xml:lang="ko"><![CDATA[필드에 아무런 값도 입력/선택하지 않으면 해당 확장변수의 기존값도 삭제합니다. (체크하지 않은 경우에는 기존값을 보존합니다.)]]></value>
+		<value xml:lang="en"><![CDATA[If no value is entered/selected in the field, delete the existing value of the corresponding extended variable. (Only preserve the existing value if not checked.)]]></value>
+	</item>
+	<item name="msg_too_many_modules">
+		<value xml:lang="ko"><![CDATA[두 개 이상의 모듈에서 체크된 문서는 확장변수값을 수정할 수 없습니다.]]></value>
+		<value xml:lang="en"><![CDATA[The documents that were checked in more than one module can not be modified.]]></value>
+	</item>
+	<item name="msg_not_extra_key_defined">
+		<value xml:lang="ko"><![CDATA[확장변수가 정의되어 있지 않습니다.]]></value>
+		<value xml:lang="en"><![CDATA[Extra Input Fields are not defined.]]></value>
+	</item>
 </lang>

@@ -181,6 +181,36 @@
 	width: 236px;
 }
 
+.x ul.target_list#extra_keys {
+	min-height: auto;
+	max-height: none;
+}
+.x ul.target_list#extra_keys li.target_status {
+	padding: 12px;
+	height: auto;
+	vertical-align: top;
+}
+.x ul.target_list#extra_keys input.tel {
+	width: 48px;
+}
+.x ul.target_list#extra_keys textarea {
+	width: 100%;
+}
+.x ul.target_list#extra_keys .krzip-address-wrap input {
+	width: 25%;
+}
+.x ul.target_list#extra_keys li.target_status#del_prev {
+	display: block;
+	color: #900;
+}
+.x ul.target_list#extra_keys li.target_status#del_prev li {
+	line-height: 1.5em;
+}
+.x ul.target_list#extra_keys li.target_status#del_prev input,
+.x ul.target_list#extra_keys li.target_status#del_prev label {
+	display: inline;
+}
+
 .x .x_pagination {
 	margin: 0;
 }

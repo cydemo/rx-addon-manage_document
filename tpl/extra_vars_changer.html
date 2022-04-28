@@ -1,0 +1,47 @@
+<load target="js/extra_vars_changer.js" />
+	<div class="x_control-group">
+		<label class="x_control-label" for="extra_keys">{$lang->extra_vars} {$lang->cmd_setup}</label>
+		<div class="x_controls">
+			<!--@if(empty($extra_keys))-->
+			<ul class="target_list" name="extra_keys" id="extra_keys">
+				<!--@if($module_count > 1)-->
+				<li>{$lang->msg_too_many_modules}</li>
+				<!--@else-->
+				<li>{$lang->msg_not_extra_key_defined}</li>
+				<!--@endif-->
+			</ul>
+			<!--@else-->
+			<ul class="target_list" name="extra_keys" id="extra_keys">
+				<!--@foreach($extra_keys as $key => $val)-->
+				<li class="target_status" id="{$val->eid}">
+					<div><strong>{$val->idx}. {$val->name}</strong><em cond="$val->is_required=='Y'">*</em></div>
+					<div>{$val->getFormHTML()}</div>
+				</li>
+				<!--@endforeach-->
+				<li class="target_status" id="del_prev">
+					<div><strong>※{$lang->notify}</strong></div>
+					<div>
+						<ul>
+							<li>
+								<input type="checkbox" name="del_prev" id="del_prev_value" value="Y" style="">
+								<label for="del_prev_value" style="">{$lang->msg_prev_value}</label>
+							</li>
+						</ul>
+					</div>
+				</li>
+			</ul>
+			<!--@endif-->
+		</div>
+	</div>
+	<!--@if(!empty($extra_keys))-->
+	<div class="x_pull-right">
+		<a class="x_btn" href="{getUrl('', 'mid', $mid, 'act', $act, 'manage_type', $manage_type)}">{$lang->cmd_select} {$lang->cmd_cancel}</a>
+		<a class="x_btn x_btn-inverse" id="execute">{$lang->cmd_replace}</a>
+	</div>
+	<!--@endif-->
+</div>
+<div id="overlay">
+	<div class="spinner_wrapper">
+		<span class="spinner"></span>
+	</div>
+</div>
